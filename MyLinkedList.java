@@ -29,7 +29,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	        private int index = 0;
 	        
 	        public MyListIterator() {
-	        	if(nil.next == nil)
+	        	if(isEmpty())
 					 pointer = nil;
 					
 				 pointer = nil.next;
