@@ -203,7 +203,14 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public int lastIndexOf(Object obj) {
-		
+	Node nd = nil.next;
+        
+        for(int i = size()-1; i >= 0; i--) {
+        	if(nd.data.equals(obj))
+        		return i;
+        	nd = nd.next;
+        }
+        return -1;
 	}
 	
 	public ListIterator<E> listIterator(int index){
