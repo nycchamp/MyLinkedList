@@ -186,7 +186,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public E getLast() { 
-		if (isempty())
+		if (isEmpty())
 			 return null;
 		return (E) nil.prev.data; 
 	}
