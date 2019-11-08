@@ -166,7 +166,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public E element() {
-		if(nil.next == nil) // is this the same as isEmpty?
+		if(isEmpty())
 			return null;
 		
 		return (E) nil.next.getData();
