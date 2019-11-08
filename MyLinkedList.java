@@ -105,9 +105,6 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		if(c == null)
 			throw new NullPointerException();
 		
-		if(c.isEmpty())
-			return false;  
-		
 		for (E e: c)
 			addLast(e);
 		
@@ -117,9 +114,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public boolean addAll(int index, Collection<? extends E> c) {
 		if(c == null)
 			throw new NullPointerException();
-		
-		if(c.isEmpty())
-			return false;
+
 		for (E e: c)
 			add(index, e);
 		
@@ -185,13 +180,13 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public E getFirst() { 
-		 if (nil.next == nil)
+		 if (isEmpty())
 			 return null;
 		return (E) nil.next.data; 
 	}
 	
 	public E getLast() { 
-		if (nil.next == nil)
+		if (isempty())
 			 return null;
 		return (E) nil.prev.data; 
 	}
