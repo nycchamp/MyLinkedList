@@ -350,7 +350,11 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean removeFirstOccurrence(Object obj) {
-		
+	if(contains(obj)) {
+			remove(indexOf(obj));
+			return true;
+		}
+		return false;	
 	}
 	
 	public E removeLast() {
@@ -365,7 +369,11 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean removeLastOccurrence(Object obj) {
-		
+	if(contains(obj)) {
+			remove(lastIndexOf(obj));
+			return true;
+		}
+		return false;
 	}
 	
 	public E set(int index, E value) {
