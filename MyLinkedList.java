@@ -498,5 +498,17 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		}
 		System.out.println("]");
 		
+		System.out.println("\n\n"+test.toString());
+		test.set(16, 3);
+		System.out.println(test.toString());
+		System.out.println("index of 3 is: " + test.indexOf(3));
+		System.out.println("Last index of 2 is: " + test.lastIndexOf(3));
+		
+		System.out.println("removed first occurrence of 3: " + test.removeFirstOccurrence(3));
+		System.out.println(test.toString());
+		
+		System.out.println("removed last occurrence of 3: " + test.removeLastOccurrence(3));
+		System.out.println(test.toString());
+		
 	}
 }
