@@ -502,7 +502,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		test.set(16, 3);
 		System.out.println(test.toString());
 		System.out.println("index of 3 is: " + test.indexOf(3));
-		System.out.println("Last index of 2 is: " + test.lastIndexOf(3));
+		System.out.println("Last index of 3 is: " + test.lastIndexOf(3));
 		
 		System.out.println("removed first occurrence of 3: " + test.removeFirstOccurrence(3));
 		System.out.println(test.toString());
