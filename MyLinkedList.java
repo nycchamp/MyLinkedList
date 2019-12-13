@@ -30,10 +30,10 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	        
 	        public MyListIterator() {
 	        	if(isEmpty())
-					 pointer = nil;
+				pointer = nil;
 					
-				 pointer = nil.next;
-				 index = 0;
+			pointer = nil.next;
+			index = 0;
 	        }
 	        
 	        @Override
@@ -62,13 +62,10 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	
 	public MyLinkedList(Collection<? extends E> c) {
 		MyLinkedList<E> list = new MyLinkedList<>();
+
+		for(E e: c)
+			list.add(e);
 		
-		if(c == null)
-			throw new NullPointerException();
-		
-		for(E e: c) {
-			list.addLast(e);
-		}
 	}
 	
 	public boolean add(E elem) {
@@ -104,9 +101,9 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public boolean addAll(Collection<? extends E> c) {
 		if(c == null)
 			throw new NullPointerException();
-		
+			
 		for (E e: c)
-			addLast(e);
+			add(e);
 		
 		return true;
 	}
@@ -114,10 +111,14 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public boolean addAll(int index, Collection<? extends E> c) {
 		if(c == null)
 			throw new NullPointerException();
-
-		for (E e: c)
-			add(index, e);
 		
+		if(isOutOfBounds(index))
+			throw new IndexOutOfBoundsException();
+		
+		for(int i = 0; i < size(); i++) 
+			if(i == index-1)
+				for(E e: c)
+					add(index, e);
 		return true;
 	}
 	
