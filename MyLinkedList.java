@@ -117,8 +117,10 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		
 		for(int i = 0; i < size(); i++) 
 			if(i == index-1)
-				for(E e: c)
-					add(index, e);
+				for(int j = index; j < size(); j++)
+					for(E e: c)
+						add(j, e);
+						
 		return true;
 	}
 	
@@ -193,26 +195,27 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public int indexOf(Object obj) {
-        Node nd = nil.next;
+        	Node nd = nil.next;
         
-        for(int i = 0; i < size(); i++) {
-        	if(nd.data.equals(obj))
-        		return i;
-        	nd = nd.next;
-        }
-        return -1;
+        	for(int i = 0; i < size(); i++) {
+        		if(nd.data.equals(obj))
+        			return i;
+			
+        		nd = nd.next;
+        	}
+        	return -1;
 	}
 	
 	public int lastIndexOf(Object obj) {
-	Node nd = nil.prev;
+		Node nd = nil.prev;
 
-        for(int i = size()-1; i >= 0; i--) {
-        	if(nd.data.equals(obj))
-        		return i;
+        	for(int i = size()-1; i >= 0; i--) {
+        		if(nd.data.equals(obj))
+        			return i;
         	
-        	nd = nd.prev;
-        }
-        return -1;	
+        		nd = nd.prev;
+        	}
+        	return -1;	
 	}
 	
 	public ListIterator<E> listIterator(int index){
@@ -335,8 +338,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean remove(Object obj) {
-		MyLinkedList list = (MyLinkedList) obj;
-		
+		remove(indexOf(obj));
 	}
 	
 	public E removeFirst() {
@@ -351,10 +353,10 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean removeFirstOccurrence(Object obj) {
-	if(!contains(obj))
+		if(!contains(obj))
 			return false;
 
-		remove(indexOf(obj));
+		remove(obj);
 		return true;
 	}
 	
@@ -370,7 +372,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean removeLastOccurrence(Object obj) {
-	if(!contains(obj)) 
+		if(!contains(obj)) 
 			return false;
 
 		remove(lastIndexOf(obj));
@@ -422,19 +424,17 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public boolean isEmpty(){ return size() == 0; }
 	
 	public boolean isOutOfBounds(int index) {
-		if(index < 0 || index >= size())
-			return true;
-		return false;
+		return (index < 0 || index >= size());
 	}
 	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-        sb.append("[ ");
-        
-        for(E e: this)
-            sb.append(e + " ");
-        sb.append("]");
-        return sb.toString();
+        	
+		sb.append("[ ");
+        	for(E e: this)
+            		sb.append(e + " ");
+        	sb.append("]");
+        	return sb.toString();
 	 }
 
 	@Override
