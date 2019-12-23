@@ -163,19 +163,13 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		
 	}
 	
-	public E element() {
-		if(isEmpty())
-			return null;
-		
-		return (E) nil.next.getData();
-	}
+	public E element() { return getFirst(); }
 	
 	public E get(int index) {
 		if(isOutOfBounds(index))
 			throw new IndexOutOfBoundsException();
 			
 		Node result = nil.next;
-		
 		for(int i = 0; i < index; i++)
 			result = result.next;
 		
@@ -227,61 +221,25 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	
 	public boolean offer(E e) {
 		addLast(e);
-		size++;
 		return true;
 	}
 	
 	public boolean offerFirst(E e) {
 		addFirst(e);
-		size++;
 		return true;
 	}
 	
-	public boolean offerLast(E e) {
-		addLast(e);
-		size++;
-		return true;
-	}
+	public boolean offerLast(E e) { offer(e); }
 	
-	public E peek() {
-		if(isEmpty()) 
-			return null;
-		return (E) nil.next.getData();
-	}
+	public E peek() { return getFirst(); }
 	
-	public E peekFirst() {
-		if(isEmpty()) 
-			return null;
-		return (E) nil.next.getData();
-	}
+	public E peekFirst() { return peek(); }
 	
-	public E peekLast() {
-		if(isEmpty()) 
-			return null;
-		return (E) nil.prev.getData();
-	}
+	public E peekLast() { return getLast(); }
 	
-	public E poll() {
-		if(isEmpty())
-			return null;
-		
-		Node old = nil.next;
-		nil.next = nil.next.next;
-		nil.next.next.prev = nil;
-		
-		return (E) old.getData();
-	}
+	public E poll() { return removeFirst(); }
 	
-	public E pollFirst() {
-		if(isEmpty())
-			return null;
-		
-		Node old = nil.next;
-		removeFirst();
-		size--;
-		return (E) old.getData();
-		
-	}
+	public E pollFirst() { return poll(); }
 	
 	public E pollLast() {
 		if(isEmpty())
