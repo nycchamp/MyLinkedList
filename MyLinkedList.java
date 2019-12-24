@@ -237,18 +237,18 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	
 	public E peekLast() { return getLast(); }
 	
-	public E poll() { return removeFirst(); }
+	public E poll() { 
+		if(isEmpty())
+			return null;
+		return removeFirst(); 
+	}
 	
 	public E pollFirst() { return poll(); }
 	
 	public E pollLast() {
 		if(isEmpty())
 			return null;
-		
-		Node old = nil.prev;
-		removeLast();
-		size--;
-		return (E) old.getData();
+		return removeLast();
 	}
 	
 	public E pop() { return removeFirst(); }
