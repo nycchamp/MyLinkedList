@@ -173,19 +173,19 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		for(int i = 0; i < index; i++)
 			result = result.next;
 		
-		return (E) result.data;
+		return result.getData();
 	}
 	
 	public E getFirst() { 
 		 if (isEmpty())
 			 return null;
-		return (E) nil.next.data; 
+		return nil.next.getData(); 
 	}
 	
 	public E getLast() { 
 		if (isEmpty())
 			 return null;
-		return (E) nil.prev.data; 
+		return nil.prev.getData(); 
 	}
 	
 	public int indexOf(Object obj) {
@@ -267,16 +267,14 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public E remove() {
-		if(isEmpty())
+		if (isEmpty()) 
 			throw new NoSuchElementException();
-		
-		if(nil.next == nil)
-			return null;
-		
+				
 		Node old = nil.next;
-		removeFirst();
+		nil.next.next.prev = nil;
+		nil.next = nil.next.next;
 		size--;
-		return (E) old.getData();
+		return old.getData();
 	}
 	
 	public E remove(int index) {
@@ -296,27 +294,16 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	
 	public boolean remove(Object obj) {
-		remove(indexOf(obj));
-	}
-	
-	public E removeFirst() {
-		if (isEmpty()) 
-			throw new NoSuchElementException();
-				
-		Node old = nil.next;
-		nil.next.next.prev = nil;
-		nil.next = nil.next.next;
-		size--;
-		return (E) old.getData();
-	}
-	
-	public boolean removeFirstOccurrence(Object obj) {
 		if(!contains(obj))
 			return false;
-
-		remove(obj);
+			
+		remove(indexOf(obj));
 		return true;
 	}
+	
+	public E removeFirst() { return remove(); }
+	
+	public boolean removeFirstOccurrence(Object obj) { return remove(obj);	}
 	
 	public E removeLast() {
 		 if (isEmpty()) 
@@ -326,7 +313,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		 nil.prev.prev.next = nil;
 		 nil.prev = nil.prev.prev;
 		 size--;
-		 return (E) old.getData();
+		 return old.getData();
 	}
 	
 	public boolean removeLastOccurrence(Object obj) {
@@ -348,7 +335,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		
 		tempNode.data = value;
 		
-		return (E) tempNode.data;
+		return tempNode.getData();
 	}
 	
 	public int size() { return size; }
@@ -356,27 +343,25 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public Object[] toArray() {
 		Object[] arr = new Object[size()];
 		int index = 0;
-		 for(E elem: this) {
-			 if(index < size()) {
-				 arr[index] = elem;
-			 }
-		 }
+		for(E elem: this)
+			if(index < size()){ 
+				arr[index] = elem;
+			}
 		 return arr;
 	}
 	
-	public <E> E toArray(E[] arr) {
+	public <E> E[] toArray(E[] arr) {
 		if(arr == null)
 			throw new NullPointerException();
 		
 		//ArrayStoreException? 
 		
 		int index = 0;
-		 for(Object e: this) {
-			 if(index < size()) {
-				 arr[index] = (E) e;
-			 }
-		 }
-		 return (E) arr;
+		for(Object e: this) 
+			if(index < size()) {
+				arr[index] = (E) e;
+			}
+		return arr;
 	}
 	
 	public boolean isEmpty(){ return size() == 0; }
