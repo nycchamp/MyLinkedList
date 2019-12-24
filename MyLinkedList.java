@@ -251,20 +251,9 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		return (E) old.getData();
 	}
 	
-	public E pop() {
-		if(isEmpty())
-			throw new NoSuchElementException();
-		
-		Node old = nil.next;
-		removeFirst();
-		size--;
-		return (E) old.getData();
-	}
+	public E pop() { return removeFirst(); }
 	
-	public void push(E e) {
-		addFirst(e);
-		size++;
-	}
+	public void push(E e) { addFirst(e); }
 	
 	public E remove() {
 		if (isEmpty()) 
