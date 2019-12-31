@@ -26,14 +26,12 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	}
 	 private class MyListIterator<E> implements Iterator<E> {
 	        private Node<E> pointer;
-	        private int index = 0;
 	        
 	        public MyListIterator() {
 	        	if(isEmpty())
 				pointer = nil;
 					
 			pointer = nil.next;
-			index = 0;
 	        }
 	        
 	        @Override
@@ -133,14 +131,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		size++;
 	}
 	
-	public void addLast(E elem) {
-		Node newNode = new Node(elem);
-		newNode.prev = nil.prev;
-		newNode.next = nil;
-		nil.prev.next = newNode;
-		nil.prev = newNode;
-		size++;
-	}
+	public void addLast(E elem) { add(e); }
 	
 	public void clear() {
 		nil.next = null;
@@ -215,8 +206,10 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public ListIterator<E> listIterator(int index){
 		if(isOutOfBounds(index))
 			throw new IndexOutOfBoundsException();
-		
-		
+			
+		for(int i = index; i < size(); i++){
+				
+		}
 	}
 	
 	public boolean offer(E e) {
@@ -279,7 +272,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		old.next.prev = old.prev;
 		size--;
 		
-		return (E) old.getData();
+		return old.getData();
 	}
 	
 	public boolean remove(Object obj) {
