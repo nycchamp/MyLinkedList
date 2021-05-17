@@ -359,8 +359,6 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		if(arr == null)
 			throw new NullPointerException();
 		
-		//ArrayStoreException? 
-		
 		int index = 0;
 		for(Object e: this) 
 			if(index < size()) {
