@@ -1,7 +1,7 @@
 # Implementation of a Linked List
 
 ## Overview
-This is a complete implementation of a *doubly* Linked list in java. 
+This is a complete implementation of a doubly Linked list in java. 
 
 Like an array, a linked list is a simple linear data structure. A linked list is a collection of data elements called *nodes*.
 
