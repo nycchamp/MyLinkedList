@@ -2,8 +2,11 @@
 
 ## Overview
 This is a complete implementation of a doubly Linked list in java. 
+
 Like an array, a linked list is a simple linear data structure. A linked list is a collection of data elements called *nodes*.
+
 In a *singly linked list* each node holds a value and a link to the next node. 
+
 In a *doubly linked list* each node also holds a link to the previous node.
 
 ## API
