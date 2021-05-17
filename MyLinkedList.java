@@ -33,6 +33,12 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 					
 			pointer = nil.next;
 	        }
+		public MyListIterator(int index) {
+	        	if(isEmpty() || index == size())
+				pointer = nil;
+					
+			
+	        }
 			        
 	        @Override
 	        public boolean hasNext() {
@@ -225,10 +231,8 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		if(isOutOfBounds(index))
 			throw new IndexOutOfBoundsException();
 		
-		MyListIterator<E> iter = new MyListIterator();
-		for(int i = index; i < size(); i++)
-			iter.next();	
-		
+		return new MyListIterator(index);
+	
 	}
 	
 	public boolean offer(E e) {
