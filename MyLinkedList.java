@@ -24,7 +24,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		private Node<E> next, prev;
 		private E data;
 	}
-	 private class MyListIterator<E> implements Iterator<E> {
+	private class MyListIterator<E> implements Iterator<E> {
 	        private Node<E> pointer;
 	        
 	        public MyListIterator() {
@@ -36,20 +36,38 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	        
 	        @Override
 	        public boolean hasNext() {
-	            return pointer != nil;
+	        	return pointer.getNext() != nil;
 	        }
-
+		
+		 @Override
+	        public boolean hasPrevious() {
+			return pointer.getPrevious() != nil;
+		}
+		
 	        @Override
 	        public E next() {
-	        	 E old = pointer.data;
-	             pointer = pointer.next;
-	             return old;
+	        	E old = pointer.data;
+			if(pointer.hasNext()) {
+	        		pointer = pointer.next;
+	        		return old;
+			} else throw new NoSuchElementException();
 	        } 
 	        
 	        public void remove() {
 	            throw new UnsupportedOperationException();
 	        }        
-	 }
+	}
+	private class DescendingIterator<E> implements Iterator<E> {
+        	private final MyListIterator iter = new MyListIterator();
+        	
+		public boolean hasNext() { return iter.hasPrevious(); }
+        	
+		public E next() { return iter.previous(); }
+		
+        	public void remove() { iter.remove(); }
+		
+    	}
+	
 	 
 	public MyLinkedList() {
 		nil = new Node();
@@ -150,7 +168,7 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 		if(isEmpty())
 			return null;
 		
-		Iterator<E> iter = new MyLinkedList<E>.MyListIterator<E>();
+		return new DescendingIterator();
 		
 	}
 	
