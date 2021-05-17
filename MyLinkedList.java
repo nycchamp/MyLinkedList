@@ -33,13 +33,13 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 					
 			pointer = nil.next;
 	        }
-	        
+			        
 	        @Override
 	        public boolean hasNext() {
 	        	return pointer.getNext() != nil;
 	        }
 		
-		 @Override
+		@Override
 	        public boolean hasPrevious() {
 			return pointer.getPrevious() != nil;
 		}
@@ -224,10 +224,11 @@ implements List<E>, Deque<E>, Cloneable, Serializable {
 	public ListIterator<E> listIterator(int index){
 		if(isOutOfBounds(index))
 			throw new IndexOutOfBoundsException();
-			
-		for(int i = index; i < size(); i++){
-				
-		}
+		
+		MyListIterator<E> iter = new MyListIterator();
+		for(int i = index; i < size(); i++)
+			iter.next();	
+		
 	}
 	
 	public boolean offer(E e) {
