@@ -1,4 +1,4 @@
-# Implementation of a Linked List
+# Implementation of a Doubly Linked List
 
 ## Overview
 This is a complete implementation of a doubly Linked list in java. 
