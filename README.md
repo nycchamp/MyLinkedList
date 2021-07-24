@@ -17,4 +17,4 @@ If you do not have a JDK already installed, you can click the following link to 
 https://www.oracle.com/java/technologies/java-se-glance.html 
 
 ## Resources
-If you want to know more about linked lists, check [Wikipedia](https://en.wikipedia.org/wiki/Linked_list).
+If you want to know more about linked lists, you can read about it on [Wikipedia](https://en.wikipedia.org/wiki/Linked_list).
